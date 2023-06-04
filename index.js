@@ -38,7 +38,7 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 // const uri = `mongodb+srv://bistroBoss:qfcTJoHD64hR7Wzo@cluster0.33bueao.mongodb.net/?retryWrites=true&w=majority`;
 
 // const uri =
-//   "mongodb+srv://bistroBoss:qfcTJoHD64hR7Wzo@cluster0.33bueao.mongodb.net/?retryWrites=true&w=majority";
+//   "mongodb+srv://nahidestes:BH7EmQEurM7M008K@cluster0.33bueao.mongodb.net/?retryWrites=true&w=majority";
 
 // const uri = "mongodb://127.0.0.1:27017/";
 
@@ -132,6 +132,12 @@ async function run() {
     // Menu
     app.get("/menu", async (req, res) => {
       const result = await menuCollection.find().toArray();
+      res.send(result);
+    });
+
+    app.post("/menu", async (req, res) => {
+      const newItem = req.body;
+      const result = await menuCollection.insertOne(newItem);
       res.send(result);
     });
 
